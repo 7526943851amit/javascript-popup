@@ -1,0 +1,216 @@
+// index.html
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Custom c_Popup Using Vanilla JavaScript</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<button id="clickBtn">Click Me To See one c_PopUp</button>
+<button id="clickBtn2">Click Me To See two c_PopUp</button>
+<button id="clickBtn3">Click Me To See three c_PopUp</button>
+
+    <div id="c_popup" class="info_c_popup_wrap">
+        <div class="c_popup-container">
+           <div class="info_c_popup_overlay"></div>
+            <div class="c_popup">
+                <div class="close-c_popup"><a href="#">X</a></div>
+                <h2>Custom c_Popup one</h2>
+                <p>
+                    This is a custom c_popup. You can just put any content behind it. Also you can apply any custom style
+                    in this c_popup.
+                </p>
+                <a href="#" class="c_popup-btn">View Details</a>
+            </div>
+        </div>
+    </div>
+    <div id="c_popup2" class="info_c_popup_wrap">
+        <div class="c_popup-container">
+           <div class="info_c_popup_overlay"></div>
+            <div class="c_popup">
+                <div class="close-c_popup"><a href="#">X</a></div>
+                <h2>Custom c_Popup two</h2>
+                <p>
+                    This is a custom c_popup. You can just put any content behind it. Also you can apply any custom style
+                    in this c_popup.
+                </p>
+                <a href="#" class="c_popup-btn">View Details</a>
+            </div>
+        </div>
+    </div>
+    <div id="c_popup3" class="info_c_popup_wrap">
+        <div class="c_popup-container">
+           <div class="info_c_popup_overlay"></div>
+            <div class="c_popup">
+                <div class="close-c_popup"><a href="#">X</a></div>
+                <h2>Custom c_Popup three</h2>
+                <p>
+                    This is a custom c_popup. You can just put any content behind it. Also you can apply any custom style
+                    in this c_popup.
+                </p>
+                <a href="#" class="c_popup-btn">View Details</a>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
+
+
+
+//index.html end
+
+
+// script.js
+
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('[id^="clickBtn"]');
+    const popups = document.querySelectorAll('[id^="c_popup"]');
+    const overlays = document.querySelectorAll(".info_c_popup_overlay");
+
+    buttons.forEach((button, index) => {
+        const popup = popups[index];
+        const closeBtn = popup.querySelector('.close-c_popup a');
+        const overlay = overlays[index];
+
+        button.addEventListener('click', () => {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+
+        overlay.addEventListener('click', () => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    });
+});
+
+
+// script.js end
+
+
+
+//style.css
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+button{
+    background-color: rebeccapurple;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 30px;
+    border-radius: 20px;
+    box-shadow: 1px 6px 12px 0px rgb(0 0 0 / 13%);
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+}
+button:hover{
+    background-color: orange;
+}
+.info_c_popup_wrap {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: transparent;
+    z-index: 9999;
+}
+.c_popup-container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    min-height: 100%;
+}
+.c_popup {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    width: 95%;
+    border-radius: 15px;
+    max-width: 1000px;
+    position: relative;
+    z-index: 9999;
+}
+.close-c_popup{
+    display: flex;
+    justify-content: flex-end;
+}
+.close-c_popup a{
+    font-size: 1.2rem;
+    background-color: rebeccapurple;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    display: inline-block;
+}
+.c_popup > h2{
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+.c_popup > p{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.c_popup-btn{
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid rebeccapurple;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 10px 0px;
+    transition: .2s all ease-in;
+}
+.c_popup-btn:hover{
+    background-color: rebeccapurple;
+    color: #fff;
+}
+.info_c_popup_overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index: 9990;
+    background: rgb(96 95 127 / 70%);
+}
+
+
+
+
+
+//style.css
